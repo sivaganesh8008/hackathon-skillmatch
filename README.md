@@ -1,73 +1,208 @@
-# Welcome to your Lovable project
+Here’s a **clean, professional README.md** tailored to **your SkillMatch project**, your tech stack (React + Vite + shadcn/ui + Supabase), and your company/employee dashboard flow.
 
-## Project info
+You can **copy-paste this directly** into `README.md`.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+# 🚀 SkillMatch
 
-There are several ways of editing your application.
+**SkillMatch** is a full-stack web application designed to help companies efficiently manage employees, track availability, and intelligently match employees to projects based on skills and status.
 
-**Use Lovable**
+It provides **role-based dashboards** for **company admins** and **employees**, secure authentication, and a modern, responsive UI.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## ✨ Features
 
-**Use your preferred IDE**
+### 🔐 Authentication & Roles
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+* Secure authentication using **Supabase Auth**
+* Role-based access:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+  * **Company Admin**
+  * **Employee**
+* Protected routes (unauthenticated users redirected)
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 🏢 Company Admin Dashboard
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+* Create and manage employee accounts
+* Auto-generate secure passwords for employees
+* View employee details:
 
-# Step 3: Install the necessary dependencies.
-npm i
+  * Name
+  * Email
+  * Department
+  * Designation
+  * Availability status
+* Search employees by name, email, or department
+* View company-level statistics:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+  * Total employees
+  * Available employees
+  * Employees on project
+
+---
+
+### 👨‍💼 Employee Dashboard
+
+* View personal profile
+* Update availability status
+* View assigned projects (if any)
+
+---
+
+### 📊 Project & Matching
+
+* Project management
+* Employee–project matching logic
+* Availability-based filtering
+
+---
+
+### 🎨 UI & UX
+
+* Built with **shadcn/ui**
+* Skeleton loaders & spinners
+* Toast notifications (Sonner)
+* Fully responsive design
+* Clean, modern dashboard layout
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* **React** (with TypeScript)
+* **Vite**
+* **React Router DOM**
+* **shadcn/ui**
+* **Tailwind CSS**
+* **Lucide Icons**
+* **Zod** (form validation)
+* **React Query**
+
+### Backend / Services
+
+* **Supabase**
+
+  * Authentication
+  * Database
+  * Role-based access
+* PostgreSQL (via Supabase)
+
+---
+
+## 📂 Project Structure
+
+```
+skillmatch/
+├── src/
+│   ├── components/
+│   │   └── ui/            # shadcn/ui components
+│   ├── integrations/
+│   │   └── supabase/      # Supabase client
+│   ├── pages/
+│   │   ├── Auth.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── CompanyDashboard.tsx
+│   │   ├── Employees.tsx
+│   │   ├── Projects.tsx
+│   │   ├── Matching.tsx
+│   │   ├── Profile.tsx
+│   │   └── NotFound.tsx
+│   ├── App.tsx
+│   └── main.tsx
+├── public/
+├── package.json
+├── vite.config.ts
+└── README.md
+```
+
+---
+
+## 🚦 Routing Overview
+
+| Route                | Description             |
+| -------------------- | ----------------------- |
+| `/`                  | Landing page            |
+| `/auth`              | Login / Signup          |
+| `/dashboard`         | Employee dashboard      |
+| `/company-dashboard` | Company admin dashboard |
+| `/employees`         | Employee management     |
+| `/projects`          | Project management      |
+| `/matching`          | Skill matching          |
+| `*`                  | 404 – Not Found         |
+
+---
+
+## ▶️ Getting Started
+
+### 1️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+### 2️⃣ Start Development Server
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### 3️⃣ Open in Browser
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+http://localhost:5173
+```
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🔐 Environment Setup
 
-## What technologies are used for this project?
+Create a `.env` file in the root:
 
-This project is built with:
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 📌 Best Practices Followed
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+* No `node_modules` committed
+* Role-based route protection
+* Centralized Supabase client
+* Clean component separation
+* Strong form validation using Zod
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 🚀 Future Enhancements
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+* Advanced skill-based matching algorithm
+* Admin analytics dashboard
+* Project timelines & tracking
+* Email notifications for employees
+* Export reports (CSV / PDF)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+
+## 👨‍💻 Author
+
+**Sivaganesh**
+Project built as a real-world full-stack application using modern web technologies.
+
+---
+
+If you want, I can also:
+
+* Add **screenshots section**
+* Customize README for **college submission**
+* Add **deployment guide (Netlify/Vercel)**
+* Write a **backend API README** if you add Flask later
+
+Just tell me 👍
