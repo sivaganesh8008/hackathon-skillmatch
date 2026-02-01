@@ -129,7 +129,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
             title="Total Employees"
-            value="248"
+            value="90"
             icon={<Users className="w-6 h-6" />}
             trend={{ value: 12, label: "vs last month" }}
             variant="primary"

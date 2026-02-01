@@ -13,7 +13,7 @@ import {
 import { AppLayout } from "@/components/layout/AppLayout";
 import { EmployeeCard } from "@/components/shared/EmployeeCard";
 import { supabase } from "@/integrations/supabase/client";
-import * as XLSX from "xlsx"; // <-- added for Excel import/export
+import * as XLSX from "xlsx"; // for Excel import/export
 
 // Mock data
 const mockEmployees = [
@@ -32,6 +32,8 @@ const mockEmployees = [
       { name: "Node.js", level: "intermediate" as const },
       { name: "GraphQL", level: "intermediate" as const },
     ],
+    githubLink: "", // added GitHub link
+    resumeFile: null as File | null,
   },
   {
     id: "2",
@@ -47,6 +49,8 @@ const mockEmployees = [
       { name: "React", level: "intermediate" as const },
       { name: "AWS", level: "intermediate" as const },
     ],
+    githubLink: "",
+    resumeFile: null,
   },
   {
     id: "3",
@@ -78,7 +82,7 @@ const mockEmployees = [
       { name: "SQL", level: "expert" as const },
     ],
   },
-  {
+    {
     id: "5",
     name: "Lisa Wang",
     designation: "Mobile Developer",
@@ -108,6 +112,7 @@ const mockEmployees = [
       { name: "PostgreSQL", level: "expert" as const },
     ],
   },
+  // ... rest of mockEmployees unchanged
 ];
 
 export default function Employees() {
@@ -131,6 +136,8 @@ export default function Employees() {
     yearsExperience: 0,
     readinessScore: 0,
     skills: "",
+    resumeFile: null as File | null,
+    githubLink: "", // added GitHub link
   });
 
   // For Import Modal
@@ -189,6 +196,8 @@ export default function Employees() {
       yearsExperience: 0,
       readinessScore: 0,
       skills: "",
+      resumeFile: null,
+      githubLink: "",
     });
   };
 
@@ -203,6 +212,8 @@ export default function Employees() {
       yearsExperience: emp.yearsExperience,
       readinessScore: emp.readinessScore,
       skills: emp.skills.map(s => s.name).join(", "),
+      githubLink: emp.githubLink || "",
+      resumeFile: emp.resumeFile?.name || "",
     }));
     const worksheet = XLSX.utils.json_to_sheet(dataToExport);
     const workbook = XLSX.utils.book_new();
@@ -235,6 +246,8 @@ export default function Employees() {
         skills: row.skills
           ? row.skills.split(",").map((s: string) => ({ name: s.trim(), level: "beginner" }))
           : [],
+        githubLink: row.githubLink || "",
+        resumeFile: null,
       }));
 
       setEmployees([...employees, ...importedEmployees]);
@@ -383,6 +396,7 @@ export default function Employees() {
                 value={newEmployee.location}
                 onChange={(e) => setNewEmployee({ ...newEmployee, location: e.target.value })}
               />
+              <p>Years of Experience</p>
               <Input
                 placeholder="Years of Experience"
                 type="number"
@@ -391,6 +405,7 @@ export default function Employees() {
                   setNewEmployee({ ...newEmployee, yearsExperience: Number(e.target.value) })
                 }
               />
+              <p>Readiness Score</p>
               <Input
                 placeholder="Readiness Score"
                 type="number"
@@ -404,6 +419,28 @@ export default function Employees() {
                 value={newEmployee.skills}
                 onChange={(e) => setNewEmployee({ ...newEmployee, skills: e.target.value })}
               />
+
+              {/* Resume Upload */}
+              <Input
+                type="file"
+                accept=".pdf,.doc,.docx"
+                onChange={(e) =>
+                  setNewEmployee({ ...newEmployee, resumeFile: e.target.files?.[0] || null })
+                }
+              />
+              {newEmployee.resumeFile && (
+                <p className="text-sm text-muted-foreground">
+                  Selected: {newEmployee.resumeFile.name}
+                </p>
+              )}
+
+              {/* GitHub Link */}
+              <Input
+                placeholder="GitHub Link"
+                value={newEmployee.githubLink}
+                onChange={(e) => setNewEmployee({ ...newEmployee, githubLink: e.target.value })}
+              />
+
               <div className="flex justify-end gap-2">
                 <Button variant="outline" onClick={() => setShowAddModal(false)}>
                   Cancel
