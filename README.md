@@ -1,6 +1,4 @@
-Here’s a **clean, professional README.md** tailored to **your SkillMatch project**, your tech stack (React + Vite + shadcn/ui + Supabase), and your company/employee dashboard flow.
 
-You can **copy-paste this directly** into `README.md`.
 
 ---
 
@@ -197,12 +195,3 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 Project built as a real-world full-stack application using modern web technologies.
 
 ---
-
-If you want, I can also:
-
-* Add **screenshots section**
-* Customize README for **college submission**
-* Add **deployment guide (Netlify/Vercel)**
-* Write a **backend API README** if you add Flask later
-
-Just tell me 👍
